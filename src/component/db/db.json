@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "sender": "man1",
+        "receiver": "man2",
+        "msg": "hello",
+        "time": "11:20"
+    }
+]
