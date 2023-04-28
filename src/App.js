@@ -21,10 +21,9 @@ function App() {
             Learn React
           </a>
         </header>
-      </div>
-      <div>
-        <img src="src/img/man1.png" alt="Avatar"/>
-        <Chat />
+        <body className='App-body'>
+          < Chat />
+        </body>
       </div>
       <br/>
       <br/>
