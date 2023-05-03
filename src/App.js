@@ -7,6 +7,8 @@ import React from 'react';
 import { Route, Switch, useHistory } from 'react-router';
 
 function App() {
+  const history = useHistory();
+
   return (
     <>
       <div>

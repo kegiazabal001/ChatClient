@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router';
 import "./style/Chat.css";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
