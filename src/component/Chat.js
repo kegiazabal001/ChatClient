@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import './Chat.css';
+import './style/Chat.css';
 import man1 from './img/man1.png';
 import man2 from './img/man2.png';
 
 function Message({ sender, msg, time }) {
     let icon = sender ? man1 : man2;
-    let className = sender ? "container darker" : "container";
+    let className = sender ? "container2 darker" : "container2";
     let imgClass = sender ? "right" : "";
     let timeClass = sender ? "time-left" : "time-right";
   return (

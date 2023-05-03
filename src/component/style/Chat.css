@@ -1,13 +1,14 @@
 /* Chat containers */
-.container {
+.container2 {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
+    text-align: left;
 }
 
-/* Darker chat container */
+/* Darker chat container2 */
 .darker {
     border-color: #ccc;
     background-color: #ddd;
@@ -15,14 +16,14 @@
 }
 
 /* Clear floats */
-.container::after {
+.container2::after {
     content: "";
     clear: both;
     display: table;
 }
 
 /* Style images */
-.container img {
+.container2 img {
     float: left;
     max-width: 60px;
     width: 100%;
@@ -31,7 +32,7 @@
 }
 
 /* Style the right image */
-.container img.right {
+.container2 img.right {
     float: right;
     margin-left: 20px;
     margin-right:0;
@@ -51,7 +52,7 @@
 
 /* center message-sender div class */
 .message-input {
-    display: flex; /* make the container a flex container */
-  justify-content: center; /* center the items horizontally */
-  align-items: center; /* center the items vertically */
+    display: flex; /* make the container2 a flex container */
+    justify-content: center; /* center the items horizontally */
+    align-items: center; /* center the items vertically */
 }

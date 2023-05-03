@@ -1,12 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
-import Chat from './component/Chat.js';
-
+import Chat from './component/Chat';
+import Login from './component/Login';
+import Register from './component/Register';
+import React from 'react';
+import { Route, Switch, useHistory } from 'react-router';
 
 function App() {
   return (
     <>
-      <div className="App">
+      <div>
+      <Switch>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/chat">
+          < Chat />
+        </Route>
+        <Route path="/">
+          {history.push('/register')}
+        </Route>
+      </Switch>
+    </div>
+      
+    </>
+    
+  );
+}
+
+export default App;
+
+/*
+
+
+<div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -22,6 +52,8 @@ function App() {
           </a>
         </header>
         <body className='App-body'>
+          < Register />
+          < Login />
           < Chat />
         </body>
       </div>
@@ -31,9 +63,4 @@ function App() {
       <br/>
       <br/>
       <br/>
-    </>
-    
-  );
-}
-
-export default App;
+*/
