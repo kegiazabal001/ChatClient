@@ -18,11 +18,14 @@ const App = () => {
     }
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn({user: null, logged: false});
-    setChoice(0);
+  const handleLogout = (auk) => {
+    if (auk === 0) {
+      setIsLoggedIn({user: null, logged: false});
+      setChoice(0);
+    } else {
+      setChoice(2);
+    }
   };
-
 
   const handleRegister = () => {
     setChoice(0);

@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import './style/Chat.css';
-import man1 from './img/man1.png';
+//import man1 from './img/man1.png';
 //import man2 from './img/man2.png';
 //import man3 from './img/man3.png';
 //import woman1 from './img/woman1.png';
 //import woman2 from './img/woman2.png';
 import UserList from './UserList.js';
+import Follow from './Follow.js';
 
 function Chat({handleLogout, loggedUser}) {
 
@@ -13,6 +14,8 @@ function Chat({handleLogout, loggedUser}) {
     //selectedUser={selectedUser}
     
     const [friendList, setFriendList] = useState(null);
+
+    const [showChat, setShowChat] = useState(3);
 
     useEffect(() => {
         getUsers();
@@ -50,7 +53,7 @@ function Chat({handleLogout, loggedUser}) {
     };
 
     const logout = () => {
-        handleLogout();
+        handleLogout(0);
     }
     
     const [messages, setMessages] = useState([]);
@@ -140,6 +143,7 @@ function Chat({handleLogout, loggedUser}) {
     */
 
     const handleUserClick = (userName) => {
+        setShowChat(1);
         setSelectedUser(userName);
         getMessages(userName);
     };
@@ -152,24 +156,40 @@ function Chat({handleLogout, loggedUser}) {
         return mezuak;
     }
 
+    const addFriend = () => {
+        setShowChat(0);
+    }
+
     if (!friendList) {
         return <div>Loading...</div>;
     } else {
         return (
             <>
-                <h1>Chat Messages <img src={man1} width='30px' alt='man1'></img> </h1>
                 <div className="cont">
                     <nav>
+                        <button onClick={addFriend}>+</button>
                         <UserList recentUsers={friendList} handleUserClick={handleUserClick} />
                         <button onClick={logout}>Logout</button>
                         <p className="error"></p>
                     </nav>
                     <main>
-                        <p className="errorM"></p>
-                        <ul>
-                            {inprimatuMezuak().map((message) => (message))}
-                        </ul>
-                        <MessageForm/>
+                        {
+                            showChat == 0 ? (
+                                <Follow logged={loggedUser} friends={friendList} />
+                            ): showChat == 1 ?(
+                                <>
+                                    <h1>Chat Messages</h1>
+                                    <h2>{selectedUser}</h2>
+                                    <p className="errorM"></p>
+                                    <ul>
+                                        {inprimatuMezuak().map((message) => (message))}
+                                    </ul>
+                                    <MessageForm/>
+                                </>
+                            ) : (
+                                <h1>Select a friend to chat</h1>
+                            )
+                        }
                     </main>
                 </div>
             </>
