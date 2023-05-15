@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './style/Chat.css';
 import man1 from './img/man1.png';
-import man2 from './img/man2.png';
+//import man2 from './img/man2.png';
 //import man3 from './img/man3.png';
 //import woman1 from './img/woman1.png';
 //import woman2 from './img/woman2.png';
@@ -83,12 +83,17 @@ function Chat({handleLogout, loggedUser}) {
         }
 
         newMessage = (message) => {
-            fetch('api/newMessage', {
+            const data = {
+                username: loggedUser,
+                friend: selectedUser,
+                message: message
+            };
+            fetch('/api/newMessage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(loggedUser, selectedUser, message),
+                    body: JSON.stringify(data),
                 }).then(response => response.json()).then(data => {
                     console.log(data);
                     if (data.message === "ok") {
@@ -100,15 +105,6 @@ function Chat({handleLogout, loggedUser}) {
                 });
 
         }
-
-        /*
-        sender
-            "a"
-            msg
-            "Hello World!"
-            time
-            "12:00"
-        */
     
         handleSubmit(event) {
             //const data = JSON.stringify(db)
@@ -116,7 +112,6 @@ function Chat({handleLogout, loggedUser}) {
             let time = date.getHours() + ":" + date.getMinutes();
             event.preventDefault();
             let message = { sender: loggedUser, msg: this.state.message, time: time };
-            console.log(message);
             this.newMessage(message);
             //addMessage(true, this.state.message, time);
         }
