@@ -43,6 +43,7 @@ function Register({handleRegister}) {
             <br/>
             <form onSubmit={handleSubmit} className="form">
                 <h1>Register</h1>
+                <p className="error"></p>
                 <input
                     type="text"
                     placeholder="Enter username"
@@ -71,7 +72,6 @@ function Register({handleRegister}) {
                     value={password2}
                     onChange={(e) => setPassword2(e.target.value)}
                 />
-                <p className="error"></p>
                 <button className="form-submit" type="submit">Register</button>
                 <div className="form-footer">
                     Already have an account? 

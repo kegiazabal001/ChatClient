@@ -8,8 +8,8 @@ import './style/Chat.css';
 import UserList from './UserList.js';
 import Follow from './Follow.js';
 
-function Chat({handleLogout, loggedUser}) {
-
+function Chat({handleLogout}) {
+    const loggedUser = localStorage.getItem('session');
     const [selectedUser, setSelectedUser] = useState(null);
     //selectedUser={selectedUser}
     
@@ -106,7 +106,6 @@ function Chat({handleLogout, loggedUser}) {
                         document.querySelector(".errorM").innerHTML = data.message;
                     }
                 });
-
         }
     
         handleSubmit(event) {
@@ -125,7 +124,7 @@ function Chat({handleLogout, loggedUser}) {
                     <label>
                         <input type="text" value={this.state.message} onChange={this.handleChange} placeholder='Message'/>
                     </label>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value=">" />
                 </form>
             );
         }
@@ -153,6 +152,8 @@ function Chat({handleLogout, loggedUser}) {
         for (let i = 0; i < messages.length; i++) {
             mezuak.push(<li key={i}><Message sender={messages[i].sender} msg={messages[i].msg} time={messages[i].time} /></li>);
         }
+        
+
         return mezuak;
     }
 
@@ -160,60 +161,39 @@ function Chat({handleLogout, loggedUser}) {
         setShowChat(0);
     }
 
-    if (!friendList) {
-        return <div>Loading...</div>;
-    } else {
-        return (
-            <>
-                <div className="cont">
-                    <nav>
-                        <button onClick={addFriend}>+</button>
-                        <UserList recentUsers={friendList} handleUserClick={handleUserClick} />
-                        <button onClick={logout}>Logout</button>
-                        <p className="error"></p>
-                    </nav>
-                    <main>
-                        {
-                            showChat == 0 ? (
-                                <Follow logged={loggedUser} friends={friendList} />
-                            ): showChat == 1 ?(
-                                <>
+    return (
+        <>
+            <div className="cont">
+                <nav>
+                    <button onClick={addFriend} className='addFriendButton'>+</button>
+                    <UserList recentUsers={friendList? friendList : []} handleUserClick={handleUserClick} />
+                    <button onClick={logout} className='logout'>Logout</button>
+                    <p className="error"></p>
+                </nav>
+                <main id='main'>
+                    {
+                        showChat == 0 ? (
+                            <Follow logged={loggedUser} friends={friendList} />
+                        ): showChat == 1 ?(
+                            <>
+                                <div className="chat">
                                     <h1>Chat Messages</h1>
                                     <h2>{selectedUser}</h2>
                                     <p className="errorM"></p>
-                                    <ul>
+                                    <ul id="messageList">
                                         {inprimatuMezuak().map((message) => (message))}
                                     </ul>
                                     <MessageForm/>
-                                </>
-                            ) : (
-                                <h1>Select a friend to chat</h1>
-                            )
-                        }
-                    </main>
-                </div>
-            </>
-        );
-    }
+                                </div>
+                            </>
+                        ) : (
+                            <h1>Select a friend to chat</h1>
+                        )
+                    }
+                </main>
+            </div>
+        </>
+    );
 }
 
 export default Chat;
-
-/*
-
-            const filteredUserList = userList.filter((user) =>{
-                    console.log(user);
-                    user.username.toLowerCase().includes(searchQuery.toLowerCase())
-                }
-            );
-
-                    <nav>
-                        <UserList recentUsers={filteredUserList} handleUserClick={handleUserClick} />
-                    </nav>
-
-                            {messages.map((message) => (
-                                <li key={message}>
-                                    <Message sender={message.sender} msg={message.msg} time={message.time} />
-                                </li>
-                            ))}
-*/

@@ -56,9 +56,9 @@ function Login({handleLogin}) {
                     <div className="container">
                         <form onSubmit={this.handleSubmit} className='form'>
                             <label>Login</label>
+                            <p className='error'></p>
                             <input type="text" id='username' value={this.state.username} onChange={this.handleUsernameChange} placeholder='Username' required/>
                             <input type="password" id='password' value={this.state.password} onChange={this.handlePasswordChange} placeholder='Password'required/>
-                            <p className='error'></p>
                             <button type="submit"> Login </button>
                             <div className="form-footer">
                                 Don't have an account yet? <button onClick={this.handleRegister}>Register</button>

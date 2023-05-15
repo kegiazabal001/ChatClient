@@ -7,6 +7,10 @@ function Follow({logged, friends}){
     const [userList, setUserList] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
 
+    if (!friends) {
+        friends = [];
+    }
+
     useEffect(() => {
         getUsers();
     }, []);
@@ -45,8 +49,7 @@ function Follow({logged, friends}){
             const data = await response.json();
             if (data.message === "ok") {
                 document.querySelector(".error").innerHTML = "Added friend successfully";
-                getUsers();
-                friends.push(selectedUser);
+                window.location.reload(true);
             } else {
                 document.querySelector(".error").innerHTML = data.message;
             }
@@ -66,12 +69,13 @@ function Follow({logged, friends}){
         <div className="Follow">
             <h1>Follow</h1>
             <div className="userList">
+                <ul>
                 {
-                    userList ? (
+                    userList===null ? (
                         <>
                             {userList.map((user) => (
-                                <li key={user.username} onClick={selectToFollow(user.username)}>
-                                    <div className="user">
+                                <li key={user.username} onClick={selectToFollow(user.username)} className={ selectedUser===user.username ? "selected" : "noSelected" } >
+                                    <div>
                                         <label>{user.username}</label>
                                     </div>
                                 </li>
@@ -82,8 +86,6 @@ function Follow({logged, friends}){
                         <p>No friends to add</p>
                     )
                 }
-                <ul>
-                    
                 </ul>
             </div>
             <p className="error"></p>

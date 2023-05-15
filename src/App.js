@@ -6,12 +6,13 @@ import Register from './components/Register.js';
 import './App.css';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState({user: null, logged: false});
+  //const [isLoggedIn, setIsLoggedIn] = useState({user: null, logged: false});
   const [choice, setChoice] = useState(0); // 0 = login, 1 = register, 2 = chat
+  //localStorage session
 
   const handleLogin = (username, aukera) => {
     if (aukera === 0) {
-      setIsLoggedIn({user: username, logged :true});
+      localStorage.setItem('session', username);
       setChoice(2);
     } else {
       setChoice(1);
@@ -19,13 +20,9 @@ const App = () => {
   };
 
   const handleLogout = (auk) => {
-    if (auk === 0) {
-      setIsLoggedIn({user: null, logged: false});
-      setChoice(0);
-    } else {
-      setChoice(2);
-    }
-  };
+    localStorage.removeItem('session');
+    setChoice(0);
+};
 
   const handleRegister = () => {
     setChoice(0);
@@ -36,10 +33,16 @@ const App = () => {
       {
         choice === 1 ? (
           <Register handleRegister={handleRegister} />
-        ) : (choice === 2 && isLoggedIn.logged) ? (
-          <Chat handleLogout={handleLogout} loggedUser={isLoggedIn.user} />
+        ) : (choice === 2 && localStorage.getItem('session') !== null) ? (
+          <>
+            <p>{localStorage.getItem('session')}</p>
+            <Chat handleLogout={handleLogout} />
+          </>
         ) : (
-          <Login handleLogin={handleLogin} />
+          <>
+            {localStorage.getItem('session') !== null ? setChoice(2) : null}
+            <Login handleLogin={handleLogin} />
+          </>
         )
       }
     </div>
