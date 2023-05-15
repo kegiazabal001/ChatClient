@@ -36,7 +36,7 @@ function Login({handleLogin}) {
               }).then(response => response.json()).then(data => {
                 if (data.message === 'ok') {
                     this.setState({loggedIn: true});
-                    handleLogin(0);
+                    handleLogin(username, 0);
                 } else {
                     document.querySelector('.error').innerHTML = data.message;
                 }

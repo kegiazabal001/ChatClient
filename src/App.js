@@ -6,21 +6,21 @@ import Register from './components/Register.js';
 import './App.css';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState({user: null, logged: false});
   const [choice, setChoice] = useState(0); // 0 = login, 1 = register, 2 = chat
 
-  const handleLogin = (aukera) => {
-    if (aukera == 0) {
-      setIsLoggedIn(true);
+  const handleLogin = (username, aukera) => {
+    if (aukera === 0) {
+      setIsLoggedIn({user: username, logged :true});
       setChoice(2);
     } else {
-      setIsLoggedIn(false);
       setChoice(1);
     }
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn({user: null, logged: false});
+    setChoice(0);
   };
 
 
@@ -31,10 +31,10 @@ const App = () => {
   return (
     <div className="app-container">
       {
-        choice == 1 ? (
+        choice === 1 ? (
           <Register handleRegister={handleRegister} />
-        ) : choice == 2 ? (
-          <Chat handleLogout={handleLogout} />
+        ) : (choice === 2 && isLoggedIn.logged) ? (
+          <Chat handleLogout={handleLogout} loggedUser={isLoggedIn.user} />
         ) : (
           <Login handleLogin={handleLogin} />
         )

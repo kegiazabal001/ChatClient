@@ -19,6 +19,7 @@
   .user-list li {
     display: flex;
     align-items: center;
+    width: auto;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;

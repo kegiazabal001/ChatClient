@@ -9,7 +9,7 @@ const UserList = ({ recentUsers, handleUserClick }) => {
   };
 
   const filteredUsers = recentUsers.filter((user) =>
-    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    user.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -20,11 +20,11 @@ const UserList = ({ recentUsers, handleUserClick }) => {
       </div>
       <ul className="user-list">
         {filteredUsers.map((user) => (
-          <li key={user.id} onClick={() => handleUserClick(user.id)}>
-            <div className="user-avatar">{user.name.charAt(0)}</div>
+          <li key={user} onClick={() => handleUserClick(user)}>
+            <div className="user-avatar">{user.charAt(0)}</div>
             <div className="user-details">
-              <div className="user-name">{user.name}</div>
-              <div className="user-last-message">{user.lastMessage}</div>
+              <div className="user-name">{user}</div>
+              <div className="user-last-message">{/*user.lastMessage*/ 'mezua'}</div>
             </div>
           </li>
         ))}
