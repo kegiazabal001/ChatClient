@@ -48,7 +48,6 @@ function Follow({logged, friends}){
             });
             const data = await response.json();
             if (data.message === "ok") {
-                document.querySelector(".error").innerHTML = "Added friend successfully";
                 window.location.reload(true);
             } else {
                 document.querySelector(".error").innerHTML = data.message;
@@ -71,7 +70,7 @@ function Follow({logged, friends}){
             <div className="userList">
                 <ul>
                 {
-                    userList===null ? (
+                    userList.length>0 ? (
                         <>
                             {userList.map((user) => (
                                 <li key={user.username} onClick={selectToFollow(user.username)} className={ selectedUser===user.username ? "selected" : "noSelected" } >

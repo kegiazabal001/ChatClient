@@ -111,7 +111,9 @@ function Chat({handleLogout}) {
         handleSubmit(event) {
             //const data = JSON.stringify(db)
             let date = new Date();
-            let time = date.getHours() + ":" + date.getMinutes();
+            let hours= date.getHours();
+            let minutes = date.getMinutes();
+            let time = (hours<10 ? "0"+hours : hours) + ":" + (minutes<10 ? "0"+minutes : minutes);
             event.preventDefault();
             let message = { sender: loggedUser, msg: this.state.message, time: time };
             this.newMessage(message);
