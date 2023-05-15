@@ -2,21 +2,39 @@ import React, { useState } from "react";
 //import { useHistory } from 'react-router';
 import "./style/Login.css";
 
-function Register() {
+function Register({handleRegister}) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+
   //const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = { username, email, password };
+    if (password !== password2) {
+        document.querySelector(".error").innerHTML = "Passwords do not match";
+        return;
+    }
+    fetch("/api/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+    }).then(response => response.json()).then(data => {
+        if (data.message === "ok") {
+            handleRegister();
+        } else {
+            document.querySelector(".error").innerHTML = data.message;
+        }
+    });
+  };
 
-    alert("A name was submitted: " + newUser.username + "  " + newUser.email + "  " + newUser.password);
-    //setUsername("");
-    //setEmail("");
-    //setPassword("");
-    //history.push('/login');
+  const handleLogin = (e) => {
+    e.preventDefault();
+    handleRegister();
   };
 
   return (
@@ -50,13 +68,15 @@ function Register() {
                     type="password"
                     placeholder="Repeat password"
                     required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
                 />
-                <div className="form-footer">
-                    Already have an account? <a href="/login">Log in</a>
-                </div>
+                <p className="error"></p>
                 <button className="form-submit" type="submit">Register</button>
+                <div className="form-footer">
+                    Already have an account? 
+                    <button type="text" onClick={handleLogin}>Login</button>
+                </div>
             </form>
             <br/>
         </div>

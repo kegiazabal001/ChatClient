@@ -1,55 +1,64 @@
-//import logo from './logo.svg';
+import React, { useState } from 'react';
+import Login from './components/Login.js';
+import Chat from './components/Chat.js';
+import Register from './components/Register.js';
+//import UserSearch from '../UserSearch.js';
 import './App.css';
-import Chat from './component/Chat';
-import Login from './component/Login';
-import Register from './component/Register';
-import React from 'react';
-//import { Route, Switch, useHistory } from 'react-router';
 
-function App() {
-  //const history = useHistory();
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [choice, setChoice] = useState(0); // 0 = login, 1 = register, 2 = chat
+
+  const handleLogin = (aukera) => {
+    if (aukera == 0) {
+      setIsLoggedIn(true);
+      setChoice(2);
+    } else {
+      setIsLoggedIn(false);
+      setChoice(1);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+
+  const handleRegister = () => {
+    setChoice(0);
+  };
 
   return (
-    <>
-      <div>
-        <Register />
-        <Login />
-        < Chat />
+    <div className="app-container">
+      {
+        choice == 1 ? (
+          <Register handleRegister={handleRegister} />
+        ) : choice == 2 ? (
+          <Chat handleLogout={handleLogout} />
+        ) : (
+          <Login handleLogin={handleLogin} />
+        )
+      }
     </div>
-      
-    </>
-    
   );
-}
+};
 
 export default App;
 
+
 /*
-<div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <body className='App-body'>
-          < Register />
-          < Login />
-          < Chat />
-        </body>
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+<div className="app-container">
+      {!isLoggedIn ? (
+        <Login handleLogin={handleLogin} />
+      ) : (
+        <div className="chat-container">
+          <div className="left-container">
+            <UserList recentUsers={filteredUserList} handleUserClick={handleUserClick} />
+          </div>
+          <div className="right-container">
+            <Chat selectedUser={selectedUser} handleLogout={handleLogout} />
+          </div>
+        </div>
+      )}
+    </div>
 */

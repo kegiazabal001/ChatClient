@@ -1,0 +1,133 @@
+/* Estilos generales de la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Encabezado */
+header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Menú de navegación */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 100%;
+    background-color: #f2f2f2;
+    overflow-y: scroll;
+    padding: 2%;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul img {
+    width: 100%;
+}
+
+nav li {
+    background-color: #00FF00; /* verde */
+    width: 100%;
+    margin-bottom: 6%;
+}
+  
+nav li:nth-child(even) {
+    background-color: aqua; /* color claro */
+}
+
+nav a {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Estilos para la sección del contenido */
+main {
+    float: right;
+    width: 80%;
+    height: 100%;
+    padding: 20px;
+}
+
+main ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.contenido {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Chat containers */
+.container2 {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* Darker chat container2 */
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+    text-align: right;
+}
+
+/* Clear floats */
+.container2::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container2 img {
+    float: left;
+    max-width: 6%;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container2 img.right {
+    float: right;
+    margin-left: 2%;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+/* center message-sender div class */
+.message-input {
+    display: flex; /* make the container2 a flex container */
+    justify-content: center; /* center the items horizontally */
+    align-items: center; /* center the items vertically */
+}
