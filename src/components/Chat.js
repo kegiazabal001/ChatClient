@@ -168,7 +168,7 @@ function Chat({handleLogout}) {
         <>
             <div className="cont">
                 <nav>
-                    <UserList recentUsers={friendList? friendList : []} handleUserClick={handleUserClick} />
+                    <UserList recentUsers={friendList? friendList : []} handleUserClick={handleUserClick} selectedUser = {selectedUser} />
                     <button onClick={addFriend} className='addFriendButton'>+</button>
                     <p className="error"></p>
                     <button onClick={logout} className='logout'>Logout</button>

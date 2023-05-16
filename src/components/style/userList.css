@@ -34,15 +34,26 @@
   background-color: #f0f0f0;
 }
 
-.user-list li .user-avatar {
+.user-avatar {
   width: 30px;
   height: 30px;
   text-align: center;
   line-height: 30px;
   border-radius: 50%;
-  border: #ffffff 1px solid;
+  border: #edf6ff 2px solid;
   margin-right: 10px;
   background-color: #cbe4ff;
+}
+
+.user-avatar2 {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  border: #edf6ff 1px solid;
+  margin-right: 10px;
+  background-color: #edf6ff;
 }
 
 .user-list li .user-info {
