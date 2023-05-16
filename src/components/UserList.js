@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style/userList.css';
+import './style/UserList.css';
 
 const UserList = ({ recentUsers, handleUserClick }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,7 +23,7 @@ const UserList = ({ recentUsers, handleUserClick }) => {
             <>
               {filteredUsers.map((user) => (
                 <li key={user} onClick={() => handleUserClick(user)}>
-                  <div className="user-avatar">{user.charAt(0)}</div>
+                  <div className="user-avatar">{user.charAt(0).toUpperCase()}</div>
                   <div className="user-details">
                     <div className="user-name">{user}</div>
                     <div className="user-last-message">{/*user.lastMessage*/ '...'}</div>

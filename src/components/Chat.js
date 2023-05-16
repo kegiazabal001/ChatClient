@@ -1,10 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import './style/Chat.css';
-//import man1 from './img/man1.png';
-//import man2 from './img/man2.png';
-//import man3 from './img/man3.png';
-//import woman1 from './img/woman1.png';
-//import woman2 from './img/woman2.png';
 import UserList from './UserList.js';
 import Follow from './Follow.js';
 
@@ -16,6 +11,18 @@ function Chat({handleLogout}) {
     const [friendList, setFriendList] = useState(null);
 
     const [showChat, setShowChat] = useState(3);
+
+    function kargatu() {
+        if (showChat === 1) {
+            const messageList = document.getElementById('messageList');
+            function scrollDown() {
+                messageList.scrollTop = messageList.scrollHeight;
+            }
+            
+            scrollDown();
+            messageList.addEventListener('DOMSubtreeModified', scrollDown);
+        }
+    }
 
     useEffect(() => {
         getUsers();
@@ -60,13 +67,15 @@ function Chat({handleLogout}) {
 
     function Message({ sender, msg, time }) {
         //let icon = sender ? man1 : man2;
-        let className = sender===loggedUser ? "container2 darker" : "container2";
+        let eskubi = sender===loggedUser;
+        let className = eskubi ? "mezu darker" : "mezu lighter";
         //let imgClass = sender ? "right" : "";
-        let timeClass = sender===loggedUser ? "time-left" : "time-right";
       return (
-        <div className={className}>
-            <p>{ msg }</p>
-            <span className={timeClass}>{ time }</span>
+        <div className='message'>
+            <div className={className}>
+                <p>{ msg }</p>
+                <span className="time">{ time }</span>
+            </div>
         </div>
       );
       //<img src={ icon } alt="Avatar" className={imgClass}/>
@@ -131,17 +140,6 @@ function Chat({handleLogout}) {
             );
         }
     }
-    
-    //let counter = 3;
-
-    //const [searchQuery, setSearchQuery] = useState('');
-    /*
-    function addMessage(sndr, message, t) {
-        let id = counter++;
-        let newMessage = {id: { id }, sender: sndr, msg: message, time: t };
-        setMessages([...messages, newMessage]);
-    }
-    */
 
     const handleUserClick = (userName) => {
         setShowChat(1);
@@ -155,7 +153,6 @@ function Chat({handleLogout}) {
             mezuak.push(<li key={i}><Message sender={messages[i].sender} msg={messages[i].msg} time={messages[i].time} /></li>);
         }
         
-
         return mezuak;
     }
 
@@ -163,28 +160,34 @@ function Chat({handleLogout}) {
         setShowChat(0);
     }
 
+    useEffect(() => {
+        kargatu();
+    }, [showChat]);
+
     return (
         <>
             <div className="cont">
                 <nav>
-                    <button onClick={addFriend} className='addFriendButton'>+</button>
                     <UserList recentUsers={friendList? friendList : []} handleUserClick={handleUserClick} />
-                    <button onClick={logout} className='logout'>Logout</button>
+                    <button onClick={addFriend} className='addFriendButton'>+</button>
                     <p className="error"></p>
+                    <button onClick={logout} className='logout'>Logout</button>
                 </nav>
                 <main id='main'>
                     {
-                        showChat == 0 ? (
+                        showChat === 0 ? (
                             <Follow logged={loggedUser} friends={friendList} />
-                        ): showChat == 1 ?(
+                        ): showChat === 1 ?(
                             <>
                                 <div className="chat">
                                     <h1>Chat Messages</h1>
                                     <h2>{selectedUser}</h2>
-                                    <p className="errorM"></p>
-                                    <ul id="messageList">
-                                        {inprimatuMezuak().map((message) => (message))}
-                                    </ul>
+                                    <div id="messageList" className='messageList'>
+                                        <p className="errorM"></p>
+                                        <ul>
+                                            {inprimatuMezuak().map((message) => (message))}
+                                        </ul>
+                                    </div>
                                     <MessageForm/>
                                 </div>
                             </>

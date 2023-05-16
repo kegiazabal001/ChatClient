@@ -8,7 +8,6 @@ import './App.css';
 const App = () => {
   //const [isLoggedIn, setIsLoggedIn] = useState({user: null, logged: false});
   const [choice, setChoice] = useState(0); // 0 = login, 1 = register, 2 = chat
-  //localStorage session
 
   const handleLogin = (username, aukera) => {
     if (aukera === 0) {
@@ -27,6 +26,8 @@ const App = () => {
   const handleRegister = () => {
     setChoice(0);
   };
+
+  
 
   return (
     <div className="app-container">

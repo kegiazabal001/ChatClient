@@ -83,56 +83,56 @@ h1, h2 {
     text-align: center;
 }
 
-/* Chat containers */
-.container2 {
-    border: 2px solid #dedede;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
-    text-align: left;
+.messageList {
+    display: inline-block;
+    height: 420px; /* Altura deseada para la ventana de mensajes */
+    width: 100%;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical */
+    border: #ebebeb solid 2px;
+    border-radius: 30px;
+    scrollbar-width: thin; /* Ancho de la barra de desplazamiento */
+    scrollbar-color: rgb(226, 226, 226) rgb(255, 255, 255);
 }
 
-/* Darker chat container2 */
+.mezu {
+    display: inline-block;
+    border: 2px solid #dedede;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+    margin: 10px;
+    text-align: left;
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: normal;
+    min-width: 100px; /* Anchura mínima */
+    max-width: 400px; /* Anchura máxima */
+}
+
+.lighter {
+    border-color: #bab9b9;
+    background-color: #d0cece;
+    float: left;
+    clear: both;
+}
+
 .darker {
-    border-color: #ccc;
-    background-color: #ddd;
-    text-align: right;
+    float: right;
+    clear: both;
+    background-color: #f1f1f1;
 }
 
 /* Clear floats */
-.container2::after {
+.mezu::after {
     content: "";
     clear: both;
     display: table;
 }
 
-/* Style images */
-.container2 img {
-    float: left;
-    max-width: 6%;
-    width: 100%;
-    margin-right: 20px;
-    border-radius: 50%;
-}
-
-/* Style the right image */
-.container2 img.right {
-    float: right;
-    margin-left: 2%;
-    margin-right:0;
-}
-
 /* Style time text */
-.time-right {
-    float: right;
-    color: #aaa;
-}
-
-/* Style time text */
-.time-left {
+.time {
     float: left;
     color: #999;
+    font-size: 15px;
 }
 
 .messageForm {
@@ -147,7 +147,7 @@ h1, h2 {
 }
 
 .messageForm input[type=text] {
-    width: 100%;
+    width: 400px;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -158,6 +158,7 @@ h1, h2 {
 
 .messageForm input[type=submit] {
     background-color: #007bff;
+    width: 50px;
     color: white;
     padding: 12px 20px;
     margin-left: 10px;
@@ -189,4 +190,5 @@ h1, h2 {
     border-radius: 40px;
     cursor: pointer;
     font-size: large;
+    margin-left: 40%;
 }

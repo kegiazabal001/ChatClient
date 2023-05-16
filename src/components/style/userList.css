@@ -1,81 +1,94 @@
 /* Estilos generales para la lista de usuarios */
 .user-list {
-    margin-top: 20px;
-  }
-  
-  .user-list h2 {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  
-  .user-list ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Estilos para cada usuario en la lista */
-  .user-list li {
-    display: flex;
-    align-items: center;
-    width: auto;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .user-list li:hover {
-    background-color: #9c9c9c6d;
-  }
-  
-  .user-list li.active {
-    background-color: #f0f0f0;
-  }
-  
-  .user-list li .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .user-list li .user-info {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .user-list li .user-name {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
-  
-  .user-list li .user-status {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  /* Estilos para el buscador */
-  .user-list .search-input {
-    margin-top: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .user-list .search-input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-  }
+  margin-top: 20px;
+}
+
+.user-list h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.user-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilos para cada usuario en la lista */
+.user-list li {
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.user-list li:hover {
+  background-color: #9c9c9c6d;
+}
+
+.user-list li.active {
+  background-color: #f0f0f0;
+}
+
+.user-list li .user-avatar {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  border: #ffffff 1px solid;
+  margin-right: 10px;
+  background-color: #cbe4ff;
+}
+
+.user-list li .user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-list li .user-name {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-list li .user-status {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Estilos para el buscador */
+.user-list .search-input {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.user-list .search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .search-container input{
   border-radius: 40px;
   border: 2px solid #00000063;
   padding: 5px;
+  width: 90%;
 }
