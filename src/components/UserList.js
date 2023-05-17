@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style/UserList.css';
+import './style/userList.css';
 
 const UserList = ({ recentUsers, handleUserClick, selectedUser }) => {
   const [searchQuery, setSearchQuery] = useState('');
